@@ -15,6 +15,6 @@ public class PlayerInteract : PlayerBase
         if (Input.GetKey(grabKey) && grabable)
         */
 
-        //RaycastHit rayHit = Physics.Raycast(transform.position, transform.forward, out hit)
+        //RaycastHit rayHit = Physics.Raycast(transform.position, transform.forward, out rayHit);
     }
 }
