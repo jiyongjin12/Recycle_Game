@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [Header("Objects")]
-    public PlayerMovement playerMove;
+    public GameObject player;
+    public Transform rHand;
 
     [Header("Bases")]
     public ItemBase itemBase;

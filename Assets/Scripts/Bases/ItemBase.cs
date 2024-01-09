@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class ItemBase : MonoBehaviour
 {
-    [SerializeField] private Canvas slot;
+    //[SerializeField] private Canvas slot;
     protected virtual void Interact()
     {
-        gameObject.SetActive(false);
+        //GameManager.instance.itemShow.
+        this.GetComponent<Collider>().enabled = false;
+        transform.position = GameManager.instance.rHand.position;
+        transform.parent = GameManager.instance.rHand.transform;
+        //gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)

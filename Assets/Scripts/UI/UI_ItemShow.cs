@@ -5,5 +5,10 @@ using UnityEngine.UI;
 
 public class UI_ItemShow : MonoBehaviour
 {
-    public Image[] image;
+    private Image[] image;
+
+    public void ChangeItemSlot()
+    {
+        //image[0].sprite.color
+    }
 }
