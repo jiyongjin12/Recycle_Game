@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ItemBase : MonoBehaviour
 {
-    //[SerializeField] private Canvas slot;
+    public int price;
+    public int weight;
     protected virtual void Interact()
     {
         //GameManager.instance.itemShow.
