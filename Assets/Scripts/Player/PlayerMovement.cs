@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed; // 이동 속도
+    private float moveSpeed; // 이동 속도
+    public float walkSpeed;
+    public float sprintSpeed;
 
     public float groundDrag;
 
@@ -12,7 +14,9 @@ public class PlayerMovement : MonoBehaviour
     public float jumpCooldown;
     public float airMultiplier;
     bool readyToJump;
+
     public KeyCode jumpkey = KeyCode.Space;
+    public KeyCode SprintKey = KeyCode.LeftShift;
 
     public float playerHeight;
     public LayerMask whatIsGround;
@@ -28,6 +32,15 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
+    public MovementState state;
+
+    public enum MovementState
+    {
+        walking,
+        sprinting,
+        air
+    }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -42,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
         MyInput();
         SpeedControl();
+        StateHandler();
 
         if (grounded)
         {
@@ -87,6 +101,24 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
         
+    }
+
+    private void StateHandler()
+    {
+        if (grounded && Input.GetKey(SprintKey))
+        {
+            state = MovementState.sprinting;
+            moveSpeed = sprintSpeed;
+        }
+        else if(grounded)
+        {
+            state = MovementState.walking;
+            moveSpeed = walkSpeed;
+        }
+        else
+        {
+            state = MovementState.air;
+        }
     }
 
     private void SpeedControl() // 속도 제한 주기
