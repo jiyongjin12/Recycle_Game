@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class ItemBase : MonoBehaviour
 {
+    [SerializeField] private Canvas slot;
     protected virtual void Interact()
     {
-
+        gameObject.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player")) 
+        if (other.gameObject.CompareTag("Player"))
             Interact();
     }
 }
