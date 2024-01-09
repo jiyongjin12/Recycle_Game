@@ -6,6 +6,6 @@ public class TestItem : ItemBase
 {
     protected override void Interact()
     {
-        
+        base.Interact();
     }
 }
